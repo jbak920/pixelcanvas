@@ -1,0 +1,38 @@
+# Pixel Canvas main program
+# Author: Jonathan Baker
+#
+# This script manages the display for the Pixel Canvas LED display.
+
+import time
+import rpi_ws281x
+import argparse
+
+CANVAS_WIDTH   = 20      # Number of pixels per row
+CANVAS_HEIGHT  = 32      # Number of pixels per column
+LED_PIN        = 18      # GPIO pin connected to the pixels (must support PWM!).
+LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
+LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
+LED_BRIGHTNESS = 50     # Set to 0 for darkest and 255 for brightest
+LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
+
+class PixelCanvas(object):
+    def __init__(self, width, height, pin, freq_hz=800000, dma=5, invert=False,
+			brightness=255):
+        # 1D LED strip
+        self._strip = rpi_ws281x.PixelStrip(width*height, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
+        self._strip.begin()
+
+        # Color data for each pixel, in list-of-lists format
+        self._array = [[0 for i in range(width)] for j in range(height)]
+
+    def array2strip(self):
+        return [item for sublist in self._array for item in sublist]
+
+    def display(self):
+        print(array2strip())
+
+# Main program logic follows:
+if __name__ == '__main__':
+	# Create PixelCanvas object with appropriate configuration.
+	canvas = PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
+	
