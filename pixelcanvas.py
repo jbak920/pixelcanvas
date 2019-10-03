@@ -11,7 +11,7 @@ class PixelCanvas(object):
     def __init__(self, width, height, pin, freq_hz=800000, dma=5, invert=False,
 			brightness=255):
         # 1D LED strip
-        self._strip = rpi_ws281x.PixelStrip(width*height, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
+        self._strip = rpi_ws281x.PixelStrip(width*height, pin, freq_hz, dma, invert, brightness)
         self._strip.begin()
         self._width = width
         self._height = height
