@@ -5,7 +5,6 @@
 
 import rpi_ws281x
 
-import tetrisBoard
 from utils import Color
 
 class PixelCanvas(object):

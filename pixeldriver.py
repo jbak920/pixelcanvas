@@ -24,7 +24,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Create PixelCanvas object with appropriate configuration.
-    canvas = PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
+    canvas = pixelcanvas.PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
     canvas._strip.begin()
     
     
