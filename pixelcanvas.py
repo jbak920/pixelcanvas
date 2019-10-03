@@ -91,8 +91,8 @@ if __name__ == '__main__':
 
     try:
 
-	board = tetrisBoard.Board(16, 10)
-	board.active_piece = tetrisBoard.Piece(tetrisBoard.YELLOW, [10,4])
+        board = tetrisBoard.Board(16, 10)
+        board.makeNewPiece()
 
 	while (board.gameStep()):
 	    time.sleep(0.5)

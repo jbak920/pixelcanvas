@@ -220,7 +220,7 @@ class Board:
            Then ticks down once - if this fails, it means a game over. Therefore this
            function returns False if a gameover state is detected.'''
         temp_rand = randint(1,7)
-	newcolor = COLORS[temp_rand]
+        newcolor = COLORS[temp_rand]
         neworigin = [self.DISPLAY_HEIGHT, (self.WIDTH-1)/2]
         self.active_piece = Piece(newcolor, neworigin)
         return self.tickDown()
