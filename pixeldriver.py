@@ -6,7 +6,7 @@
 import argparse
 
 import pixelcanvas
-import tetris
+import tetris.tetris
 
 CANVAS_WIDTH   = 20      # Number of pixels per row
 CANVAS_HEIGHT  = 32      # Number of pixels per column
@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     try:
 
-        tetris.playTetris.play(canvas)          
+        tetris.play(canvas)          
 
     except KeyboardInterrupt:
         if args.clear:
