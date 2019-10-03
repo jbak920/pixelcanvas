@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
     try:
 
-        while (True)
+        while (True):
             board = tetrisBoard.Board(16, 10)
             board.makeNewPiece()
     
