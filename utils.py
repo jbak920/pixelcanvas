@@ -5,3 +5,12 @@ def Color(red, green, blue, white = 0):
 	"""
 	return (white << 24) | (red << 16)| (green << 8) | blue
 
+def rainbowColor(pos, distance):
+    """Generate a RGB color based on position through a rainbow of length distance"""
+    frac = (pos / float(distance)) % 1
+    if frac < 0.333:
+	return Color(  0,                   int(255 - frac*255),  int(255*frac) )
+    elif frac < 0.666:
+	return Color(  int(255*frac),       0,                    int(255 - frac*255) )
+    else:
+	return Color(  int(255 - 255*frac),  int(frac*255),      0 )
