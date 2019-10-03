@@ -45,7 +45,7 @@ class PixelCanvas(object):
     def tetris2pixel_array(self, tetris):
         for i,col in enumerate(tetris):
             for j,pixel in enumerate(col):
-            self._array[2*j]  [2*i]   = pixel
-            self._array[2*j]  [2*i+1] = pixel
-            self._array[2*j+1][2*i]   = pixel
-            self._array[2*j+1][2*i+1] = pixel
+                self._array[2*j]  [2*i]   = pixel
+                self._array[2*j]  [2*i+1] = pixel
+                self._array[2*j+1][2*i]   = pixel
+                self._array[2*j+1][2*i+1] = pixel
