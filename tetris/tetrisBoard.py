@@ -1,10 +1,13 @@
+import sys
+sys.path.insert(0,'/home/pi/pixelcanvas')
 from __future__ import print_function
 import numpy
 from random import randint
 import os
-import sys
-from ..utils import Color
 import copy
+
+from utils import Color
+
 
 BLANK  = Color(000, 000, 000) # empty space
 CYAN   = Color(000, 255, 255) #long piece
