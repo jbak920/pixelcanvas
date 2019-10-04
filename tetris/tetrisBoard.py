@@ -1,6 +1,6 @@
+from __future__ import print_function
 import sys
 sys.path.insert(0,'/home/pi/pixelcanvas')
-from __future__ import print_function
 import numpy
 from random import randint
 import os
