@@ -3,7 +3,7 @@ import numpy
 from random import randint
 import os
 import sys
-from utils import Color
+from ...utils import Color
 import copy
 
 BLANK  = Color(000, 000, 000) # empty space

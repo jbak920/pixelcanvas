@@ -3,7 +3,7 @@ import time
 import random
 
 
-def play(canvas):
+def playTetris(canvas):
      while (True):
         board = tetrisBoard.Board(16, 10)
         board.makeNewPiece()
