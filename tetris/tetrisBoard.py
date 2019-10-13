@@ -12,7 +12,7 @@ from utils import Color
 BLANK  = Color(000, 000, 000) # empty space
 CYAN   = Color(000, 255, 255) #long piece
 BLUE   = Color(000, 000, 255) #backwards L
-ORANGE = Color(255, 165, 000) #normal L
+ORANGE = Color(255, 150, 000) #normal L
 YELLOW = Color(255, 255, 000) #square
 GREEN  = Color(000, 128, 000) #backwards z
 PURPLE = Color(128, 000, 128) #t

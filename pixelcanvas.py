@@ -2,13 +2,15 @@
 # Author: Jonathan Baker
 #
 # This script manages the display for the Pixel Canvas LED display
+import math
 
 import rpi_ws281x
 
 from utils import Color
+from utils import rainbowColor
 
 class PixelCanvas(object):
-    def __init__(self, width, height, pin, freq_hz=800000, dma=5, invert=False,
+    def __init__(self, width=20, height=32, pin=18, freq_hz=800000, dma=5, invert=False,
 			brightness=255):
         # 1D LED strip
         self._strip = rpi_ws281x.PixelStrip(width*height, pin, freq_hz, dma, invert, brightness)
@@ -39,7 +41,7 @@ class PixelCanvas(object):
         for i in range(self._height):
             for j in range(self._width):
                 radius = math.sqrt(i*i + j*j)
-                self._array[j][i] = utils.rainbowColor(radius, 10)
+                self._array[j][i] = rainbowColor(radius, 10)
 
     def tetris2pixel_array(self, tetris):
         for i,col in enumerate(tetris):
