@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Pixel Canvas main program
 # Author: Jonathan Baker
 #
@@ -10,6 +8,7 @@ import argparse
 import pixelcanvas
 from tetris.tetris import playTetris
 from snake.snake   import playSnake
+from art.art import displayArt
 
 CANVAS_WIDTH   = 20      # Number of pixels per row
 CANVAS_HEIGHT  = 32      # Number of pixels per column
@@ -40,7 +39,9 @@ if __name__ == '__main__':
         if ('tetris' in args.program.lower()):
             playTetris(canvas)
         elif ('snake' in args.program.lower()):
-            playSnake(canvas)
+            print 'snek'
+        elif ('art' in args.program.lower()):
+            displayArt(canvas)
 
     except KeyboardInterrupt:
         if args.clear:

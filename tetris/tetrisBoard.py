@@ -1,9 +1,10 @@
 from __future__ import print_function
 import sys
+import os
+
 sys.path.insert(0,'/home/pi/pixelcanvas')
 import numpy
 from random import randint
-import os
 import copy
 
 from utils import Color
