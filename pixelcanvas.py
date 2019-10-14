@@ -3,6 +3,7 @@
 #
 # This script manages the display for the Pixel Canvas LED display
 import math
+import time
 
 import rpi_ws281x
 
@@ -50,3 +51,16 @@ class PixelCanvas(object):
                 self._array[2*j]  [2*i+1] = pixel
                 self._array[2*j+1][2*i]   = pixel
                 self._array[2*j+1][2*i+1] = pixel
+
+    def blink(self, delay=0.25, num_blinks=4):
+        backup = self._array
+        for i in range(num_blinks):
+            self._array = [[Color(0,0,0) for i in range(self._height)] for j in range(self._width)]
+            self.display()
+            time.sleep(delay)
+            self._array = backup
+            self.display()
+            time.sleep(delay)
+            
+            
+        
