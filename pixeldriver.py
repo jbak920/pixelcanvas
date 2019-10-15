@@ -8,7 +8,7 @@ import argparse
 import pixelcanvas
 from tetris.tetris import playTetris
 from snake.snake   import playSnake
-from art.art import displayArt
+from animation.animation import animate
 
 CANVAS_WIDTH   = 20      # Number of pixels per row
 CANVAS_HEIGHT  = 32      # Number of pixels per column
@@ -40,8 +40,8 @@ if __name__ == '__main__':
             playTetris(canvas)
         elif ('snake' in args.program.lower()):
             print 'snek'
-        elif ('art' in args.program.lower()):
-            displayArt(canvas)
+        elif('animation' in args.program.lower()):
+            animate(canvas, 'standing_mario')
 
     except KeyboardInterrupt:
         if args.clear:
