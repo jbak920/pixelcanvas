@@ -43,7 +43,7 @@ if __name__ == '__main__':
         elif ('snake' in args.program.lower()):
             print 'snek'
         elif('animation' in args.program.lower()):
-            animate(canvas, 'metroid')
+            animate(canvas, 'nes_link')
         else:
             print "You didn't choose a program!"
 
