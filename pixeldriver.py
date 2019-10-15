@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Pixel Canvas main program
 # Author: Jonathan Baker
 #
@@ -42,6 +44,8 @@ if __name__ == '__main__':
             print 'snek'
         elif('animation' in args.program.lower()):
             animate(canvas, 'standing_mario')
+        else:
+            print "You didn't choose a program!"
 
     except KeyboardInterrupt:
         if args.clear:

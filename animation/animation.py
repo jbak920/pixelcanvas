@@ -8,7 +8,12 @@ from PIL import Image
 from utils import Color
 
 def animate(canvas, dir):
-
+    '''Displays animation based on the directory given as argument.
+    
+    inputs: 
+        - canvas is a PixelCanvas object
+        - dir is a string with the directory that the animation should pull from
+    '''
     dir = '/home/pi/pixelcanvas/animation/'+ dir 
     fname = dir + '/frames.json'
     with open(fname) as json_data:
@@ -17,7 +22,7 @@ def animate(canvas, dir):
         frames = []
         for line,frame_data in enumerate(json_object):
             filename = frame_data["filename"]
-            interval = frame_data["interval"]
+            interval = frame_data["interval"] #seconds
             f = Image.open(dir + '/' + filename)
             rgb_f = f.convert('RGB')
             image = rgb_f.load()
