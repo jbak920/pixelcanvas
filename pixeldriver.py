@@ -32,6 +32,7 @@ if __name__ == '__main__':
     canvas = pixelcanvas.PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
     canvas._strip.begin()
     
+    weights = {'tetris': 0.3, 'snake': 0.0, 'animation': 0.7}
     
     print ('Press Ctrl-C to quit.')
     if not args.clear:
@@ -43,7 +44,7 @@ if __name__ == '__main__':
         elif ('snake' in args.program.lower()):
             print 'snek'
         elif('animation' in args.program.lower()):
-            animate(canvas, 'nes_link')
+            animate(canvas, 'metroid')
         else:
             print "You didn't choose a program!"
 
