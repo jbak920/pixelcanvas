@@ -6,6 +6,7 @@
 # This script manages the display for the Pixel Canvas LED display.
 
 import argparse
+import random
 
 import pixelcanvas
 from tetris.tetris import playTetris
@@ -26,7 +27,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     parser.add_argument('-p', '--program', help='specify what program to play (tetris, snake)')
+    parser.add_argument('-a', '--animation', help='specify what animation to play (must be \'random\' or a subdirectory of animation/)')
     args = parser.parse_args()
+    
+    animation = 'random'
+    if args.animation is not None:
+        animation = args.animation
+        
 
     # Create PixelCanvas object with appropriate configuration.
     canvas = pixelcanvas.PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
@@ -44,9 +51,10 @@ if __name__ == '__main__':
         elif ('snake' in args.program.lower()):
             print 'snek'
         elif('animation' in args.program.lower()):
-            animate(canvas, 'metroid')
+            animate(canvas, animation)
         else:
-            print "You didn't choose a program!"
+            while(True):
+                random.choice([playTetris(canvas), animate(canvas, animation)])
 
     except KeyboardInterrupt:
         if args.clear:
