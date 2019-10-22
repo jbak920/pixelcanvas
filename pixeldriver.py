@@ -7,6 +7,7 @@
 
 import argparse
 import random
+import time
 
 import pixelcanvas
 from tetris.tetris import playTetris
@@ -29,32 +30,37 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--program', help='specify what program to play (tetris, snake)')
     parser.add_argument('-a', '--animation', help='specify what animation to play (must be \'random\' or a subdirectory of animation/)')
     args = parser.parse_args()
-    
+
+    random.seed(a=None)
+
     animation = 'random'
     if args.animation is not None:
         animation = args.animation
         
-
     # Create PixelCanvas object with appropriate configuration.
     canvas = pixelcanvas.PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
     canvas._strip.begin()
-    
-    weights = {'tetris': 0.3, 'snake': 0.0, 'animation': 0.7}
     
     print ('Press Ctrl-C to quit.')
     if not args.clear:
         print('Use "-c" argument to clear LEDs on exit')
 
     try:
-        if ('tetris' in args.program.lower()):
-            playTetris(canvas)
-        elif ('snake' in args.program.lower()):
-            print 'snek'
-        elif('animation' in args.program.lower()):
-            animate(canvas, animation)
-        else:
-            while(True):
-                random.choice([playTetris(canvas), animate(canvas, animation)])
+        while(True):
+            if ('tetris' in args.program.lower()):
+                playTetris(canvas)
+            elif ('snake' in args.program.lower()):
+                print 'snek'
+            elif('animation' in args.program.lower()):
+                animate(canvas, animation)
+            else:
+                choice = random.randint(0, 1)
+                if choice is 0:
+                    playTetris(canvas)
+                elif choice is 1:
+                    animate(canvas, animation)
+                else:
+                    print "Something bad has happened, you shouldn't be here!"
 
     except KeyboardInterrupt:
         if args.clear:
