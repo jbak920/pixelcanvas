@@ -12,7 +12,7 @@ from utils import rainbowColor
 
 class PixelCanvas(object):
     def __init__(self, width=20, height=32, pin=18, freq_hz=800000, dma=5, invert=False,
-			brightness=255):
+			brightness=50):
         # 1D LED strip
         self._strip = rpi_ws281x.PixelStrip(width*height, pin, freq_hz, dma, invert, brightness)
         self._strip.begin()

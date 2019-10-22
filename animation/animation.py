@@ -1,6 +1,8 @@
 import time
 import sys
 sys.path.insert(0,'/home/pi/pixelcanvas')
+import os
+import random
 
 import json
 from PIL import Image
@@ -13,8 +15,16 @@ def animate(canvas, dir):
     inputs: 
         - canvas is a PixelCanvas object
         - dir is a string with the directory that the animation should pull from
+        - but if dir is 'random', then choose a random animation to play
     '''
-    dir = '/home/pi/pixelcanvas/animation/'+ dir 
+    
+    if dir is 'random':
+        dirs = [x[0].split('animation/')[-1] for x in os.walk('./animation')]
+        dirs.pop(0)
+    else:
+        dirs = [dir]
+    
+    dir = '/home/pi/pixelcanvas/animation/' + random.choice(dirs)
     fname = dir + '/frames.json'
     with open(fname) as json_data:
         json_object = json.load(json_data)
@@ -41,8 +51,10 @@ def animate(canvas, dir):
             else:
                 print filename + "does not match canvas dimensions!"
                 
-    while(True):
+    t_end = time.time() + 300 # Loop for about 5 minutes
+    while time.time() < t_end:
         for frame in frames:
             canvas._array = frame["image"]
             canvas.display()
             time.sleep(float(frame["interval"]))
+    canvas.turnOff()

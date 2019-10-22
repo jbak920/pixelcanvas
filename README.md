@@ -10,3 +10,4 @@ Sprites are taken from the following artists:
 - standing_mario: Mister Man from spriters_resource.com
 - metroid: Mister Mike from spriters_resource.com
 - nes_link: Mister Mike from spriters_resource.com
+- ff_black_mage: Vanarus from spriters_resource.com
