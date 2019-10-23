@@ -20,7 +20,7 @@ class PixelCanvas(object):
         self._height = height
 
         # Color data for each pixel, in list-of-lists format
-        self._array = [[Color(0,0,0) for i in range(height)] for j in range(width)]
+        self._array = [[Color(0,0,0) for i in range(height)] for j in range(width)] #Index as _array[row][col]
 
         # List to use for indexing into led strip (vectorization)
         self._indices = [i for i in range(width*height)]
