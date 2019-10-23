@@ -48,6 +48,7 @@ if __name__ == '__main__':
             elif('analog_clock' in args.program.lower()):
                 displayClock(canvas)
             else:
+                canvas.turnOff()
                 exec(random.choice(['playTetris(canvas)', 'animate(canvas,args.animation.lower())', 'displayClock(canvas)']))
 
     except KeyboardInterrupt:
