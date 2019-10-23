@@ -18,13 +18,15 @@ def animate(canvas, dir):
         - but if dir is 'random', then choose a random animation to play
     '''
     
-    if dir is 'random':
+    if 'random' in dir:
         dirs = [x[0].split('animation/')[-1] for x in os.walk('./animation')]
         dirs.pop(0)
     else:
         dirs = [dir]
     
-    dir = '/home/pi/pixelcanvas/animation/' + random.choice(dirs)
+    choice = random.choice(dirs)
+    print "Playing", choice, "animation"
+    dir = '/home/pi/pixelcanvas/animation/' + choice
     fname = dir + '/frames.json'
     with open(fname) as json_data:
         json_object = json.load(json_data)
@@ -51,7 +53,7 @@ def animate(canvas, dir):
             else:
                 print filename + "does not match canvas dimensions!"
                 
-    t_end = time.time() + 300 # Loop for about 5 minutes
+    t_end = time.time() + 60 # Loop for about 1 minutes
     while time.time() < t_end:
         for frame in frames:
             canvas._array = frame["image"]

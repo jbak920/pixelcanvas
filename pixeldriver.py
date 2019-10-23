@@ -26,24 +26,15 @@ LED_INVERT     = False   # True to invert the signal (when using NPN transistor 
 if __name__ == '__main__':
     # Process arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
-    parser.add_argument('-p', '--program', help='specify what program to play (tetris, snake)')
-    parser.add_argument('-a', '--animation', help='specify what animation to play (must be \'random\' or a subdirectory of animation/)')
+    parser.add_argument('-p', '--program', default='random', help='specify what program to play (tetris, snake, animation)')
+    parser.add_argument('-a', '--animation', default='random', help='specify what animation to play (must be \'random\' or a subdirectory of animation/)')
     args = parser.parse_args()
 
     random.seed(a=None)
-
-    animation = 'random'
-    if args.animation is not None:
-        animation = args.animation
-        
+       
     # Create PixelCanvas object with appropriate configuration.
     canvas = pixelcanvas.PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
     canvas._strip.begin()
-    
-    print ('Press Ctrl-C to quit.')
-    if not args.clear:
-        print('Use "-c" argument to clear LEDs on exit')
 
     try:
         while(True):
@@ -52,11 +43,9 @@ if __name__ == '__main__':
             elif ('snake' in args.program.lower()):
                 print 'snek'
             elif('animation' in args.program.lower()):
-                animate(canvas, animation)
+                animate(canvas, args.animation.lower())
             else:
-                choice = random.choice(['playTetris(canvas)', 'animate(canvas,animation)'])
-                exec(choice)
+                exec(random.choice(['playTetris(canvas)', 'animate(canvas,args.animation.lower())']))
 
     except KeyboardInterrupt:
-        if args.clear:
-            canvas.turnOff()
+        canvas.turnOff()
