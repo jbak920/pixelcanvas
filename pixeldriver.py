@@ -54,13 +54,8 @@ if __name__ == '__main__':
             elif('animation' in args.program.lower()):
                 animate(canvas, animation)
             else:
-                choice = random.randint(0, 1)
-                if choice is 0:
-                    playTetris(canvas)
-                elif choice is 1:
-                    animate(canvas, animation)
-                else:
-                    print "Something bad has happened, you shouldn't be here!"
+                choice = random.choice(['playTetris(canvas)', 'animate(canvas,animation)'])
+                exec(choice)
 
     except KeyboardInterrupt:
         if args.clear:
