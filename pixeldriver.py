@@ -13,7 +13,7 @@ import pixelcanvas
 from tetris.tetris import playTetris
 from snake.snake   import playSnake
 from animation.animation import animate
-from analog_clock.analog_clock import displayClock
+from digital_clock.digital_clock import displayClock
 
 CANVAS_WIDTH   = 20      # Number of pixels per row
 CANVAS_HEIGHT  = 32      # Number of pixels per column
@@ -45,11 +45,16 @@ if __name__ == '__main__':
                 print 'snek'
             elif('animation' in args.program.lower()):
                 animate(canvas, args.animation.lower())
-            elif('analog_clock' in args.program.lower()):
+            elif('digital_clock' in args.program.lower()):
                 displayClock(canvas)
             else:
                 canvas.turnOff()
-                exec(random.choice(['playTetris(canvas)', 'animate(canvas,args.animation.lower())', 'displayClock(canvas)']))
+                
+                # Weight the programs differently
+                # Keys are programs, values are weights
+                options = {'playTetris(canvas)': 1, 'animate(canvas,args.animation.lower())': 3, 'displayClock(canvas)': 1}
+                weighted_options = [k for k in options for dummy in range(options[k])]
+                exec(random.choice(weighted_options))
 
     except KeyboardInterrupt:
         canvas.turnOff()
