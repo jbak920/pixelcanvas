@@ -14,6 +14,7 @@ from tetris.tetris import playTetris
 from snake.snake   import playSnake
 from animation.animation import animate
 from digital_clock.digital_clock import displayClock
+from conway.conway import life
 
 CANVAS_WIDTH   = 20      # Number of pixels per row
 CANVAS_HEIGHT  = 32      # Number of pixels per column
@@ -47,12 +48,14 @@ if __name__ == '__main__':
                 animate(canvas, args.animation.lower())
             elif('digital_clock' in args.program.lower()):
                 displayClock(canvas)
+            elif('conway' in args.program.lower()):
+                life(canvas, 'pulsar_1.grid')
             else:
                 canvas.turnOff()
                 
                 # Weight the programs differently
                 # Keys are programs, values are weights
-                options = {'playTetris(canvas)': 1, 'animate(canvas,args.animation.lower())': 3, 'displayClock(canvas)': 1}
+                options = {'playTetris(canvas)': 1, 'animate(canvas,args.animation.lower())': 3, 'displayClock(canvas)': 1, 'life(canvas, \"toad_1.grid\"': 1}
                 weighted_options = [k for k in options for dummy in range(options[k])]
                 exec(random.choice(weighted_options))
 

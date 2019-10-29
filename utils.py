@@ -14,3 +14,9 @@ def rainbowColor(pos, distance):
 	return Color(  int(255*frac),       0,                    int(255 - frac*255) )
     else:
 	return Color(  int(255 - 255*frac),  int(frac*255),      0 )
+
+def multiply(digit, color):
+    retVal = []
+    for row in digit:
+        retVal.append([color * x for x in row])
+    return retVal

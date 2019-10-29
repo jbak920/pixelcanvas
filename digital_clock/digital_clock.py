@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0,'/home/pi/pixelcanvas')
 
 from utils import Color
+from utils import multiply
 
 ZERO =     [[1, 1, 1, 1],
             [1, 0, 0, 1],
@@ -105,13 +106,7 @@ def embed(array, digit, location):
     for j,row in enumerate(digit):
         for i,pixel in enumerate(row):
             array[location[1]+i][location[0]+j] = pixel
-   
-def multiply(digit, color):
-    retVal = []
-    for row in digit:
-        retVal.append([color * x for x in row])
-    return retVal
-   
+      
 def displayClock(canvas):
     if canvas._height is not 32 or canvas._width is not 20:
         print 'The canvas is not 20x32!'

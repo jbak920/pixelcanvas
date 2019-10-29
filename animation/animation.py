@@ -25,7 +25,6 @@ def animate(canvas, dir):
         dirs = [dir]
     
     choice = random.choice(dirs)
-    print "Playing", choice, "animation"
     dir = '/home/pi/pixelcanvas/animation/' + choice
     fname = dir + '/frames.json'
     with open(fname) as json_data:
