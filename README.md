@@ -14,3 +14,4 @@ Sprites are taken from the following artists:
 - tidus: unknown from spriters_resource.com
 - quina_victory: unknown from spriters_resource.com
 - felix: AleX_XelA from spriters_resource.com
+- venus, mars, jupiter, and mercury: Davias from spriters_resource.com
