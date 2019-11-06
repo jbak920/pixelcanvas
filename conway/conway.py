@@ -1,5 +1,6 @@
 import time
 import sys
+import random
 sys.path.insert(0,'/home/pi/pixelcanvas')
 
 import numpy as np
@@ -59,17 +60,24 @@ def step(array):
     return new_array
 
 def life(canvas, init_file):
-    init_file = '/home/pi/pixelcanvas/conway/' + init_file
-    with open(init_file, "r") as file:
-        result = [[int(x) for x in line.split()] for line in file]
-    array = np.array(result)
-    array = array.T
+    if 'random' not in init_file:
+        init_file = '/home/pi/pixelcanvas/conway/' + init_file
+        with open(init_file, "r") as file:
+            result = [[int(x) for x in line.split()] for line in file]
+        array = np.array(result)
+        array = array.T
+    else:
+        array = [[random.choice([0, 1]) for pixel in col] for col in canvas._array]
     
-    t_end = time.time() + 90 # Loop for 90 seconds
+    t_end = time.time() + 60 # Loop for 60 seconds
     while time.time() < t_end:
         colored_array = multiply(array, 0xFFFFFF)
         canvas._array = colored_array
         canvas.display()
         time.sleep(0.3)
-        array = step(array)
+        new_array = step(array)
+        if (new_array == array).all():
+            break
+        else:
+            array = new_array
         

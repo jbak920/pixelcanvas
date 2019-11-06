@@ -29,7 +29,7 @@ if __name__ == '__main__':
     # Process arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--program', default='random', help='specify what program to play (tetris, snake, animation)')
-    parser.add_argument('-a', '--animation', default='random', help='specify what animation to play (must be \'random\' or a subdirectory of animation/)')
+    parser.add_argument('-o', '--option', default='random', help='specify what options on a program-by-program basis')
     args = parser.parse_args()
 
     random.seed(a=None)
@@ -45,17 +45,17 @@ if __name__ == '__main__':
             elif ('snake' in args.program.lower()):
                 print 'snek'
             elif('animation' in args.program.lower()):
-                animate(canvas, args.animation.lower())
+                animate(canvas, args.option.lower())
             elif('digital_clock' in args.program.lower()):
                 displayClock(canvas)
             elif('conway' in args.program.lower()):
-                life(canvas, 'pulsar_1.grid')
+                life(canvas, args.option.lower())
             else:
                 canvas.turnOff()
                 
                 # Weight the programs differently
                 # Keys are programs, values are weights
-                options = {'playTetris(canvas)': 1, 'animate(canvas,args.animation.lower())': 3, 'displayClock(canvas)': 1, 'life(canvas, \"toad_1.grid\"': 1}
+                options = {'playTetris(canvas)': 1, 'animate(canvas,args.option.lower())': 3, 'displayClock(canvas)': 1, 'life(canvas, args.option.lower())': 1}
                 weighted_options = [k for k in options for dummy in range(options[k])]
                 exec(random.choice(weighted_options))
 
