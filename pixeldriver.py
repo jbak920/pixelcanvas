@@ -58,7 +58,7 @@ if __name__ == '__main__':
                 
                 # Weight the programs differently
                 # Keys are programs, values are weights
-                options = {'playTetris(canvas)': 1, 'animate(canvas,args.option.lower())': 3, 'displayClock(canvas)': 1, 'life(canvas, args.option.lower())': 1, 'evolve(canvas)'}
+                options = {'playTetris(canvas)': 1, 'animate(canvas,args.option.lower())': 3, 'displayClock(canvas)': 1, 'life(canvas, args.option.lower())': 1, 'evolve(canvas)' : 1}
                 weighted_options = [k for k in options for dummy in range(options[k])]
                 exec(random.choice(weighted_options))
 
