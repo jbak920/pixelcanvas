@@ -15,6 +15,7 @@ from snake.snake   import playSnake
 from animation.animation import animate
 from digital_clock.digital_clock import displayClock
 from conway.conway import life
+from cyclic_evolutionary_game.cyclic_evolutionary_game import evolve
 
 CANVAS_WIDTH   = 20      # Number of pixels per row
 CANVAS_HEIGHT  = 32      # Number of pixels per column
@@ -50,12 +51,14 @@ if __name__ == '__main__':
                 displayClock(canvas)
             elif('conway' in args.program.lower()):
                 life(canvas, args.option.lower())
+            elif('cyclic_evolutionary_game' in args.program.lower()):
+                evolve(canvas)
             else:
                 canvas.turnOff()
                 
                 # Weight the programs differently
                 # Keys are programs, values are weights
-                options = {'playTetris(canvas)': 1, 'animate(canvas,args.option.lower())': 3, 'displayClock(canvas)': 1, 'life(canvas, args.option.lower())': 1}
+                options = {'playTetris(canvas)': 1, 'animate(canvas,args.option.lower())': 3, 'displayClock(canvas)': 1, 'life(canvas, args.option.lower())': 1, 'evolve(canvas)'}
                 weighted_options = [k for k in options for dummy in range(options[k])]
                 exec(random.choice(weighted_options))
 
