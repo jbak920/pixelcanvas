@@ -5,6 +5,7 @@ import os
 sys.path.insert(0,'/home/pi/pixelcanvas')
 import numpy
 from random import randint
+from random import choice
 import copy
 
 from utils import Color
@@ -272,6 +273,19 @@ class Board:
             elif(self.checkCollision() == True):
                 self.makePositiveRotation()
            
+    def chooseOkMove(self):
+        tempBoard = copy.deepcopy(self)
+        good_moves = []
+        for move in range(4):
+            tempBoard.makeMove(move)
+            if(tempBoard.tickDown()):
+                good_moves.append(move)
+            tempBoard = copy.deepcopy(self)
+        if good_moves == []:
+            return randint(0,3)
+        else:
+            return choice(good_moves)
+    
     def makePositiveRotation(self):
         # For a 90-degree CCW rotation:
         # x -> -y
