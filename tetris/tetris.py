@@ -11,7 +11,7 @@ def playTetris(canvas):
         time.sleep(0.5)
         canvas.tetris2pixel_array(board.getBoard())
         canvas.display()
-        board.makeMove(random.randrange(3))
+        board.makeMove(board.chooseOkMove())
     
     time.sleep(0.5)
     canvas.tetris2pixel_array(board.getBoard())
