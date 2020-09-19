@@ -2,7 +2,6 @@ import tetrisBoard
 import time
 import random
 
-
 def playTetris(canvas):
     board = tetrisBoard.Board(16, 10)
     board.makeNewPiece()

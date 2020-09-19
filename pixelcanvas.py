@@ -5,7 +5,10 @@
 import math
 import time
 
-import rpi_ws281x
+try: 
+    import rpi_ws281x
+except:
+    print('No rpi_ws281x - continuing without import')
 
 from utils import Color
 from utils import rainbowColor

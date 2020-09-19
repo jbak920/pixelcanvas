@@ -10,12 +10,12 @@ import random
 import time
 
 import pixelcanvas
-from tetris.tetris import playTetris
-from snake.snake   import playSnake
+#from tetris.tetris import playTetris
 from animation.animation import animate
 from digital_clock.digital_clock import displayClock
 from conway.conway import life
 from cyclic_evolutionary_game.cyclic_evolutionary_game import evolve
+from simulatedcanvas import SimulatedCanvas
 
 CANVAS_WIDTH   = 20      # Number of pixels per row
 CANVAS_HEIGHT  = 32      # Number of pixels per column
@@ -31,20 +31,22 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--program', default='random', help='specify what program to play (tetris, snake, animation)')
     parser.add_argument('-o', '--option', default='random', help='specify what options on a program-by-program basis')
+    parser.add_argument('-t', '--test', action='store_true', default=False, help='Play the game on a terminal screen, instead of a real canvas')
     args = parser.parse_args()
 
     random.seed(a=None)
        
     # Create PixelCanvas object with appropriate configuration.
-    canvas = pixelcanvas.PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
-    canvas._strip.begin()
+    if not args.test:
+        canvas = pixelcanvas.PixelCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
+        canvas._strip.begin()
+    else:
+        canvas = SimulatedCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
 
     try:
         while(True):
             if ('tetris' in args.program.lower()):
                 playTetris(canvas)
-            elif ('snake' in args.program.lower()):
-                print 'snek'
             elif('animation' in args.program.lower()):
                 animate(canvas, args.option.lower())
             elif('digital_clock' in args.program.lower()):
